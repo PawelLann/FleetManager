@@ -8,6 +8,5 @@ public class FleetManagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FleetManagerApplication.class, args);
-
 	}
 }
