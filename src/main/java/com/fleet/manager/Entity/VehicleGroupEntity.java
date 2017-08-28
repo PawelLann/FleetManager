@@ -10,7 +10,7 @@ import java.util.Collection;
 
 @Getter
 @Setter
-@Entity
+
 public class VehicleGroupEntity extends AbstractEntity {
 
     private String name;

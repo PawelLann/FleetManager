@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 
 @Getter
 @Setter
-@Entity
 public class DriverEntity extends AbstractEntity {
 
     private String name;
