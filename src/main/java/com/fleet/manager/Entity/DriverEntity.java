@@ -9,6 +9,6 @@ import javax.persistence.Entity;
 @Setter
 public class DriverEntity extends AbstractEntity {
 
-    private String name;
-    private String surname;
+  private String name;
+  private String surname;
 }

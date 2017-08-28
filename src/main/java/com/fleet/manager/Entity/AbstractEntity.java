@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-public class AbstractEntity{
-    @Id
-    private Long id;
+public class AbstractEntity {
+  @Id
+  private Long id;
 }

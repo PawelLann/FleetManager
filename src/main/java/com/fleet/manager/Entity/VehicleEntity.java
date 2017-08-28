@@ -12,12 +12,12 @@ import java.util.Collection;
 @Entity
 public class VehicleEntity extends AbstractEntity {
 
-    private Integer vinNumber;
-    private String brand;
-    private String model;
-    private Integer yearOfProduction;
-    private String color;
-    private VehicleStatus vehicleStatus;
+  private Integer vinNumber;
+  private String brand;
+  private String model;
+  private Integer yearOfProduction;
+  private String color;
+  private VehicleStatus vehicleStatus;
 
-    private Collection <VehicleEntity> vehicleEntities = new ArrayList<>();
+  private Collection<VehicleEntity> vehicleEntities = new ArrayList<>();
 }

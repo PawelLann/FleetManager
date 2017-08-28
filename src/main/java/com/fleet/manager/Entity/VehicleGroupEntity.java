@@ -13,8 +13,8 @@ import java.util.Collection;
 
 public class VehicleGroupEntity extends AbstractEntity {
 
-    private String name;
-    private VehicleType vehicleType;
+  private String name;
+  private VehicleType vehicleType;
 
-    private Collection<VehicleGroupEntity> vehicleGroupEntities = new ArrayList<>();
+  private Collection<VehicleGroupEntity> vehicleGroupEntities = new ArrayList<>();
 }

@@ -12,8 +12,8 @@ import javax.persistence.Lob;
 @Entity
 public class IncidentEntity extends AbstractEntity {
 
-    private String name;
-    @Lob
-    private String description;
-    private String date;
+  private String name;
+  @Lob
+  private String description;
+  private String date;
 }
