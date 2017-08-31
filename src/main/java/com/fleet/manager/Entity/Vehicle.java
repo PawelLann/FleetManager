@@ -21,7 +21,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "VEHICLES")
-public class VehicleEntity extends AbstractEntity implements Serializable {
+public class Vehicle extends AbstractEntity implements Serializable {
 
   @NotEmpty
   @Column(nullable = false, length = 17)
@@ -54,5 +54,5 @@ public class VehicleEntity extends AbstractEntity implements Serializable {
       name = "VEHICLE_INCIDENT",
       joinColumns = @JoinColumn(name = "ID_VEHICLE"),
       inverseJoinColumns = @JoinColumn(name = "ID_INCIDENT"))
-  private Set<IncidentEntity> incidentEntitySet = Sets.newHashSet();
+  private Set<Incident> incidentSet = Sets.newHashSet();
 }

@@ -12,23 +12,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "VEHICLE_GROUPS")
-public class VehicleGroupEntity extends AbstractEntity implements Serializable {
+public class VehicleGroup extends AbstractEntity implements Serializable {
 
   @NotEmpty
   @Column(nullable = false, length = 30)
   private String name;
   private VehicleType vehicleType;
 
-  private Collection<VehicleGroupEntity> vehicleGroupEntities = new ArrayList<>();
+  private List<VehicleGroup> vehicleGroupEntities = new ArrayList<>();
 
   @OneToMany
   @JoinColumn(name = "ID_PROJECT_GROUP")
-  private Set<VehicleEntity> vehicleEntitySet = Sets.newHashSet();
+  private Set<Vehicle> vehicleSet = Sets.newHashSet();
 }

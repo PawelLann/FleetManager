@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "DRIVERS")
-public class DriverEntity extends AbstractEntity implements Serializable {
+public class Driver extends AbstractEntity implements Serializable {
 
   @NotEmpty
   @Column(nullable = false, length = 30)
@@ -37,5 +37,5 @@ public class DriverEntity extends AbstractEntity implements Serializable {
       name = "DRIVER_VEHICLE",
       joinColumns = @JoinColumn(name = "ID_DRIVER"),
       inverseJoinColumns = @JoinColumn(name = "ID_VEHICLE"))
-  private Set<VehicleEntity> vehicleEntitySet = Sets.newHashSet();
+  private Set<Vehicle> vehicleSet = Sets.newHashSet();
 }

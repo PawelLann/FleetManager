@@ -5,18 +5,17 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "INCIDENTS")
-public class IncidentEntity extends AbstractEntity implements Serializable {
+public class Incident extends AbstractEntity implements Serializable {
 
   @NotEmpty
   @Column(nullable = false, length = 30)
@@ -27,4 +26,7 @@ public class IncidentEntity extends AbstractEntity implements Serializable {
   @Column(name = "INCIDENT_DATE_TIME", nullable = false)
   @DateTimeFormat
   private LocalDateTime date;
+  @OneToMany
+  List<Driver> driverList = new ArrayList<>();
+
 }
