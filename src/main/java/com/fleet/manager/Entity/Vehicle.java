@@ -28,10 +28,10 @@ public class Vehicle extends AbstractEntity implements Serializable {
   private Integer vinNumber;
   @NotEmpty
   @Column(nullable = false, length = 20)
-  private String brand;
+  private String brandName;
   @NotEmpty
   @Column(nullable = false, length = 20)
-  private String model;
+  private String modelName;
   @NotEmpty
   @Column(nullable = false, length = 4)
   private Integer yearOfProduction;

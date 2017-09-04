@@ -1,5 +1,6 @@
 package com.fleet.manager.Entity;
 
+import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,4 +31,9 @@ public class Incident extends AbstractEntity implements Serializable {
   @OneToMany
   List<Driver> driverList = new ArrayList<>();
 
+  @ManyToMany
+  @JoinTable(name = "VEHICLE_INCIDENT",
+          joinColumns = @JoinColumn(name = "ID_VEHICLE"),
+          inverseJoinColumns = @JoinColumn(name = "ID_INCIDENT"))
+  private Set<Incident> vehiclesSet = Sets.newHashSet();
 }

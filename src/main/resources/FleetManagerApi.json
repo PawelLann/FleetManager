@@ -1,0 +1,1537 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a REST API server for [FleetManager](https://github.com/PawelLann/FleetManager) application.",
+    "version": "0.0.1",
+    "title": "FleetManager"
+  },
+  "host": "172.31.16.43:8080",
+  "basePath": "/fleetManager",
+  "tags": [
+    {
+      "name": "vehicles"
+    },
+    {
+      "name": "drivers"
+    },
+    {
+      "name": "vehicleGroups"
+    },
+    {
+      "name": "incidents"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/vehicles": {
+      "get": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Returns a list of all vehicles",
+        "operationId": "getAllVehicles",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VehicleViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Creates a vehicle",
+        "operationId": "createVehicle",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleForm",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/vehicles/{id}": {
+      "get": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Returns a single vehicle by ID",
+        "operationId": "getVehicleById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a vehicle",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/VehicleViewDto"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Updates a vehicle by ID",
+        "operationId": "updateVehicle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a vehicle",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "vehicleForm",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Deletes a vehicle by ID",
+        "operationId": "deleteVehicle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a vehicle",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/vehicles/{id}/incidents": {
+      "get": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Returns a list of all vehicle's incidents",
+        "operationId": "getIncidentsByVehicleId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a vehicle",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IncidentViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/drivers": {
+      "get": {
+        "tags": [
+          "drivers"
+        ],
+        "summary": "Returns a list of all drivers",
+        "operationId": "getAllDrivers",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DriverViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "drivers"
+        ],
+        "summary": "Creates a driver",
+        "operationId": "createDriver",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "driverForm",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DriverFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/drivers/{id}": {
+      "get": {
+        "tags": [
+          "drivers"
+        ],
+        "summary": "Returns a single driver by ID",
+        "operationId": "getDriverById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a driver",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/DriverViewDto"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "drivers"
+        ],
+        "summary": "Updates a driver by ID",
+        "operationId": "updateDriver",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "driverForm",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DriverFormDto"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID of a driver",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "drivers"
+        ],
+        "summary": "Deletes driver by ID",
+        "operationId": "deleteProject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a driver",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/drivers/{id}/vehicles": {
+      "get": {
+        "tags": [
+          "drivers"
+        ],
+        "summary": "Returns a list of all vehicles assigned to a driver",
+        "operationId": "getVehiclesByDriverId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a driver",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VehicleViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/drivers/{driverId}/vehicles/{vehicleId}": {
+      "put": {
+        "tags": [
+          "drivers"
+        ],
+        "summary": "Adds vehicle to a driver",
+        "operationId": "addVehicleToDriver",
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "description": "ID of a driver",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "ID of a vehicle",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "vehicles"
+        ],
+        "summary": "Removes assignment of a vehicle to a driver",
+        "operationId": "removeVehicleFromDriver",
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "description": "ID of a driver",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "vehicleId",
+            "in": "path",
+            "description": "ID of a vehicle",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/vehicleGroups": {
+      "get": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Returns a list of all vehicle groups",
+        "operationId": "getAllVehicleGroups",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VehicleGroupViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Creates a vehicle group",
+        "operationId": "createVehicleGroup",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "VehicleGroupForm",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleGroupFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/vehicleGroups/{id}": {
+      "get": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Returns a single vehicle group by ID",
+        "operationId": "getVehicleGroupById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a vehicle group",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/VehicleGroupViewDto"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Updates a vehicle group by ID",
+        "operationId": "updateVehicleGroup",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "VehicleGroupForm",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VehicleGroupFormDto"
+            }
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID of a vehicle group",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/VehicleGroupViewDto"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Deletes a vehicle group by ID",
+        "operationId": "deleteVehicleGroups",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a vehicle group",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/projectGroups/{id}/projects": {
+      "get": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Returns a list of all vehicles from a group",
+        "operationId": "getVehiclesByGroupId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of a vehicle group",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/VehicleViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/vehicleGroups/{vehicleGroupId}/vehicle/{vehicleIds}": {
+      "put": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Adds vehicle to a vehicle group",
+        "operationId": "addVehiclesToGroup",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "vehicleGroupId",
+            "in": "path",
+            "description": "ID of a vehicle group",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "in": "path",
+            "name": "vehicleIds",
+            "description": "List of IDs of vehicles",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "vehicleGroups"
+        ],
+        "summary": "Removes a vehicle from a vehicle group",
+        "operationId": "removeVehiclesFromGroup",
+        "parameters": [
+          {
+            "name": "vehicleGroupId",
+            "in": "path",
+            "description": "ID of a vehicle group",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "vehicleIds",
+            "in": "path",
+            "description": "List of IDs of vehicles",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/incidents": {
+      "get": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Returns a list of all incidents",
+        "operationId": "getAllIncidents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "incidentId",
+            "in": "query",
+            "description": "ID of an incident",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "vehicleId",
+            "in": "query",
+            "description": "ID of a vehicle",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "incidentDate",
+            "in": "query",
+            "description": "Dates of incidents",
+            "type": "string",
+            "format": "date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/IncidentViewDto"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Creates an incident",
+        "operationId": "createIncident",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "IncidentForm",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resource created"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    },
+    "/incidents/{id}": {
+      "get": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Returns a single incident by ID",
+        "operationId": "getIncidentById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of an incident",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful",
+            "schema": {
+              "$ref": "#/definitions/IncidentViewDto"
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Updates an incident by ID",
+        "operationId": "updateIncident",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "in": "body",
+            "name": "IncidentForm",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IncidentFormDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "422": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "incidents"
+        ],
+        "summary": "Deletes an incident by ID",
+        "operationId": "deleteIncident",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful"
+          },
+          "400": {
+            "description": "Bad request",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "404": {
+            "description": "Resource not found",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/ErrorDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "VehicleFormDto": {
+      "type": "object",
+      "properties": {
+        "vinNumber": {
+          "type": "integer"
+        },
+        "brandName": {
+          "type": "string"
+        },
+        "modelName": {
+          "type": "string"
+        },
+        "yearOfProduction": {
+          "type": "integer"
+        },
+        "color": {
+          "type": "string"
+        },
+        "VehicleStatus": {
+          "type": "string"
+        },
+        "VehicleType": {
+          "type": "string"
+        },
+        "VehicleIncident": {
+          "type": "string"
+        },
+        "VehicleDriver": {
+          "type": "string"
+        }
+      }
+    },
+    "VehicleViewDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "vinNumber": {
+          "type": "integer"
+        },
+        "brandName": {
+          "type": "string"
+        },
+        "modelName": {
+          "type": "string"
+        },
+        "yearOfProduction": {
+          "type": "integer"
+        },
+        "color": {
+          "type": "string"
+        },
+        "VehicleStatus": {
+          "type": "string"
+        },
+        "VehicleType": {
+          "type": "string"
+        },
+        "VehicleIncident": {
+          "type": "string"
+        },
+        "VehicleDriver": {
+          "type": "string"
+        }
+      }
+    },
+    "DriverFormDto": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "DriverViewDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "driverVehicle": {
+          "type": "array"
+        }
+      }
+    },
+    "VehicleGroupFormDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "VehicleGroupViewDto": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "IncidentFormDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "IncidentViewDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "incidentVehicle": {
+          "type": "array"
+        },
+        "incidentDriver": {
+          "type": "array"
+        }
+      }
+    },
+    "ErrorDto": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
