@@ -1,4 +1,4 @@
-package com.fleet.manager.Entity;
+package com.fleet.manager.entity;
 
 public enum VehicleStatus {
 

@@ -1,4 +1,4 @@
-package com.fleet.manager.Entity;
+package com.fleet.manager.entity;
 
 import lombok.Getter;
 import org.hibernate.validator.constraints.NotEmpty;

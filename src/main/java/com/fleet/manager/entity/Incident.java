@@ -1,4 +1,4 @@
-package com.fleet.manager.Entity;
+package com.fleet.manager.entity;
 
 import com.google.common.collect.Sets;
 import lombok.Getter;
@@ -9,8 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -28,12 +26,14 @@ public class Incident extends AbstractEntity implements Serializable {
   @Column(name = "INCIDENT_DATE_TIME", nullable = false)
   @DateTimeFormat
   private LocalDateTime date;
-  @OneToMany
-  List<Driver> driverList = new ArrayList<>();
 
   @ManyToMany
-  @JoinTable(name = "VEHICLE_INCIDENT",
-          joinColumns = @JoinColumn(name = "ID_VEHICLE"),
-          inverseJoinColumns = @JoinColumn(name = "ID_INCIDENT"))
-  private Set<Incident> vehiclesSet = Sets.newHashSet();
+  @JoinTable(
+      name="DRIVERS_INCIDENTS",
+      joinColumns = {@JoinColumn(name = "INCIDENT_ID")},
+      inverseJoinColumns = {@JoinColumn(name = "DRIVER_ID")})
+  private Set<Driver> drivers = Sets.newHashSet();
+
+  @ManyToMany(mappedBy = "incidents")
+  private Set<Vehicle> vehicles = Sets.newHashSet();
 }

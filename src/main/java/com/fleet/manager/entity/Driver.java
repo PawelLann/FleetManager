@@ -1,4 +1,4 @@
-package com.fleet.manager.Entity;
+package com.fleet.manager.entity;
 
 import com.google.common.collect.Sets;
 import lombok.Getter;
@@ -32,10 +32,8 @@ public class Driver extends AbstractEntity implements Serializable {
   @Column(nullable = false, length = 30)
   private String email;
 
-  @ManyToMany
-  @JoinTable(
-      name = "DRIVER_VEHICLE",
-      joinColumns = @JoinColumn(name = "ID_DRIVER"),
-      inverseJoinColumns = @JoinColumn(name = "ID_VEHICLE"))
-  private Set<Vehicle> vehicleSet = Sets.newHashSet();
+  @ManyToMany(mappedBy = "drivers")
+  private Set<Vehicle> vehicles = Sets.newHashSet();
+  @ManyToMany(mappedBy = "drivers")
+  private Set<Incident> incidents = Sets.newHashSet();
 }

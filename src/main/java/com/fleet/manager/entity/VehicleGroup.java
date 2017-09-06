@@ -1,4 +1,4 @@
-package com.fleet.manager.Entity;
+package com.fleet.manager.entity;
 
 import com.google.common.collect.Sets;
 import lombok.Getter;
@@ -23,7 +23,6 @@ public class VehicleGroup extends AbstractEntity implements Serializable {
   @Column(length = 10000)
   private String description;
 
-  @OneToMany
-  @JoinColumn(name = "ID_PROJECT_GROUP")
-  private Set<Vehicle> vehicleSet = Sets.newHashSet();
+  @OneToMany(mappedBy = "vehicleGroup")
+  private Set<Vehicle> vehicles = Sets.newHashSet();
 }

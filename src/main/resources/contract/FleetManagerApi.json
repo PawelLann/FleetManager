@@ -1452,7 +1452,10 @@
           "format": "email"
         },
         "driverVehicle": {
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -1511,10 +1514,16 @@
           "format": "date-time"
         },
         "incidentVehicle": {
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "incidentDriver": {
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
