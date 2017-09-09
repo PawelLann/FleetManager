@@ -41,11 +41,9 @@ public class Vehicle extends AbstractEntity implements Serializable {
   @NotEmpty
   @Column(nullable = false, length = 20)
   private String color;
-  @Id
   @Enumerated(EnumType.STRING)
   @NotEmpty
   private VehicleStatus vehicleStatus;
-  @Id
   @Enumerated(EnumType.STRING)
   @NotEmpty
   private VehicleType vehicleType;

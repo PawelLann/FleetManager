@@ -54,6 +54,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+            <version>5.1.0.Final</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>22.0</version>
@@ -124,7 +134,7 @@
                 <version>2.2.3</version>
                 <executions>
                     <execution>
-                        <id>rox</id>
+                        <id>manager</id>
                         <phase>generate-resources</phase>
                         <goals>
                             <goal>generate</goal>
@@ -133,8 +143,8 @@
                             <inputSpec>${contract.FleetManager.path}</inputSpec>
                             <language>spring</language>
                             <configOptions>
-                                <modelPackage>com.fleet.manager.api.model</modelPackage>
-                                <apiPackage>com.fleet.manager.api</apiPackage>
+                                <modelPackage>com.manager.api.model</modelPackage>
+                                <apiPackage>com.manager.api</apiPackage>
                                 <dateLibrary>legacy</dateLibrary>
                                 <type-mappings>DateTime=LocalDateTime,date=LocalDate</type-mappings>
                                 <import-mappings>LocalDateTime=java.time.LocalDateTime,LocalDate=java.time.LocalDate</import-mappings>
