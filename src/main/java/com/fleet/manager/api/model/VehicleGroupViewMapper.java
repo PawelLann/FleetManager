@@ -1,6 +1,6 @@
 package com.fleet.manager.api.model;
 
-import com.fleet.manager.entity.VehicleGroup;
+import com.fleet.manager.persistence.entity.VehicleGroup;
 import com.manager.api.model.VehicleGroupViewDto;
 import org.mapstruct.Mapper;
 

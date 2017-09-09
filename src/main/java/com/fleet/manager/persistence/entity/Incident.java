@@ -1,4 +1,4 @@
-package com.fleet.manager.entity;
+package com.fleet.manager.persistence.entity;
 
 import com.google.common.collect.Sets;
 import lombok.Getter;

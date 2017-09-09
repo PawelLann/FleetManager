@@ -1,6 +1,6 @@
 package com.fleet.manager.api.model;
 
-import com.fleet.manager.entity.Driver;
+import com.fleet.manager.persistence.entity.Driver;
 import com.manager.api.model.DriverViewDto;
 import org.mapstruct.Mapper;
 

@@ -1,6 +1,6 @@
 package com.fleet.manager.api.model;
 
-import com.fleet.manager.entity.Incident;
+import com.fleet.manager.persistence.entity.Incident;
 import com.manager.api.model.IncidentFormDto;
 import org.mapstruct.Mapper;
 

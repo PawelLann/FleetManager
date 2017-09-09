@@ -1,4 +1,4 @@
-package com.fleet.manager.entity;
+package com.fleet.manager.persistence.entity;
 
 import com.google.common.collect.Sets;
 import lombok.Getter;
@@ -8,8 +8,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
