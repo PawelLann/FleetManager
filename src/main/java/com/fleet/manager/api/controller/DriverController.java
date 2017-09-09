@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by pawel.langwerski@coi.gov.pl on 09.09.17.
+ * Created by pawel.langwerski@gmail.pl on 09.09.17.
  */
 @RestController
 @RequiredArgsConstructor

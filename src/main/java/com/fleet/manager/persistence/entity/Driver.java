@@ -13,6 +13,9 @@ import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * Created by pawel.langwerski@gmail.pl on 06.09.17.
+ */
 @Getter
 @Setter
 @Entity

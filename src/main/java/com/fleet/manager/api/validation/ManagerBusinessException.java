@@ -3,7 +3,7 @@ package com.fleet.manager.api.validation;
 import lombok.Getter;
 
 /**
- * Created by pawel.langwerski@coi.gov.pl on 09.09.17.
+ * Created by pawel.langwerski@gmail.pl on 09.09.17.
  */
 @Getter
 public class ManagerBusinessException extends RuntimeException {

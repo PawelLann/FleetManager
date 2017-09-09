@@ -11,6 +11,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+/**
+ * Created by pawel.langwerski@gmail.pl on 06.09.17.
+ */
 @Getter
 @Setter
 @Entity

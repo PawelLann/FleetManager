@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
+/**
+ * Created by pawel.langwerski@gmail.pl on 06.09.17.
+ */
 @Getter
 @MappedSuperclass
 public abstract class AbstractEntity {

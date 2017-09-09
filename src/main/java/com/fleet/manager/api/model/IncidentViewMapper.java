@@ -5,7 +5,7 @@ import com.manager.api.model.IncidentViewDto;
 import org.mapstruct.Mapper;
 
 /**
- * Created by pawel.langwerski@coi.gov.pl on 09.09.17.
+ * Created by pawel.langwerski@gmail.pl on 09.09.17.
  */
 @Mapper
 public interface IncidentViewMapper {
