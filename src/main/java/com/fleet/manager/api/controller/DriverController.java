@@ -17,7 +17,8 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class DriverController implements DriversApi {
+public class DriverController implements DriversApi{
+
   @Override
   public ResponseEntity<Void> addVehicleToDriver(Long driverId, Long vehicleId) {
     return null;
@@ -29,12 +30,12 @@ public class DriverController implements DriversApi {
   }
 
   @Override
-  public ResponseEntity<Void> deleteProject(Long id) {
+  public ResponseEntity<Void> deleteDriver(Long id) {
     return null;
   }
 
   @Override
-  public ResponseEntity<List<DriverViewDto>> getAllDrivers() {
+  public ResponseEntity<List<DriverViewDto>> getAllDrivers(Long id) {
     return null;
   }
 
