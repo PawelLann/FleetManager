@@ -37,4 +37,12 @@ public class Driver extends AbstractEntity implements Serializable {
   private Set<Vehicle> vehicles = Sets.newHashSet();
   @ManyToMany(mappedBy = "drivers")
   private Set<Incident> incidents = Sets.newHashSet();
+
+  public void removeVehicle(Vehicle vehicle){
+    vehicles.remove(vehicle);
+  }
+
+  public void addVehicle(Vehicle vehicle){
+    vehicles.add(vehicle);
+  }
 }

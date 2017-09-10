@@ -316,17 +316,6 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of a driver",
-            "required": true,
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1
-          }
-        ],
         "responses": {
           "200": {
             "description": "Operation successful",

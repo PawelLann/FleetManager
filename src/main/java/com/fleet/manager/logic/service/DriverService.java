@@ -1,6 +1,6 @@
 package com.fleet.manager.logic.service;
 
-import com.manager.api.DriversApi;
+import com.manager.api.model.DriverFormDto;
 import com.manager.api.model.DriverViewDto;
 import com.manager.api.model.VehicleViewDto;
 
@@ -11,12 +11,12 @@ import java.util.List;
  */
 public interface DriverService {
 
-  void addVehicleToDriver();
-  void createDriver();
-  void deleteDriver();
+  void addVehicleToDriver(Long driverId, Long vehicleId);
+  void createDriver(DriverFormDto driverForm);
+  void deleteDriver(Long id);
   List<DriverViewDto> getAllDrivers();
-  DriverViewDto getDriverById();
-  List<VehicleViewDto> getVehiclesByDriverId();
-  void removeVehicleFromDriver();
-  void updateDriver();
+  DriverViewDto getDriverById(Long id);
+  List<VehicleViewDto> getVehiclesByDriverId(Long id);
+  void removeVehicleFromDriver(Long driverId, Long vehicleId);
+  void updateDriver(DriverFormDto driverForm, Long id);
 }
