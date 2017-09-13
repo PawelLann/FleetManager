@@ -8,10 +8,10 @@ import lombok.Getter;
 @Getter
 public class BusinessException extends RuntimeException {
 
-  private final BusinessExceptionMessage businessExceptionMessage;
+  private final ExceptionMessage exceptionMessage;
 
-  public BusinessException(BusinessExceptionMessage businessExceptionMessage){
-    super(businessExceptionMessage.getMessage());
-    this.businessExceptionMessage = businessExceptionMessage;
+  public BusinessException(ExceptionMessage exceptionMessage){
+    super(exceptionMessage.getMessage());
+    this.exceptionMessage = exceptionMessage;
   }
 }

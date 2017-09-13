@@ -7,7 +7,7 @@ import com.fleet.manager.api.model.DriverViewMapperImpl;
 import com.fleet.manager.api.model.VehicleViewMapper;
 import com.fleet.manager.api.model.VehicleViewMapperImpl;
 import com.fleet.manager.api.validation.BusinessException;
-import com.fleet.manager.api.validation.BusinessExceptionMessage;
+import com.fleet.manager.api.validation.ExceptionMessage;
 import com.fleet.manager.persistence.entity.Driver;
 import com.fleet.manager.persistence.entity.Vehicle;
 import com.fleet.manager.persistence.repository.DriverRepository;
@@ -68,7 +68,7 @@ public class DriverServiceImpl implements DriverService {
   public List<DriverViewDto> getAllDrivers() {
     ArrayList<Driver> drivers = Lists.newArrayList(driverRepository.findAll());
     if (drivers.isEmpty()) {
-      throw new BusinessException(BusinessExceptionMessage.DRIVERS_NOT_FOUND);
+      throw new BusinessException(ExceptionMessage.DRIVERS_NOT_FOUND);
     }
     return DRIVER_VIEW_MAPPER.map(driverRepository.findAll());
   }
@@ -86,7 +86,7 @@ public class DriverServiceImpl implements DriverService {
     Driver driver = driverRepository.findOneThrowable(id);
     List<Vehicle> vehicles = vehicleRepository.findAllByDriversContains(driver);
     if (vehicles.isEmpty()) {
-      throw new BusinessException(BusinessExceptionMessage.NO_VEHICLES_ASSIGNED);
+      throw new BusinessException(ExceptionMessage.NO_VEHICLES_ASSIGNED);
     }
     return VEHICLE_VIEW_MAPPER.map(vehicleRepository.findAllByDriversContains(driver));
   }
@@ -101,11 +101,11 @@ public class DriverServiceImpl implements DriverService {
   }
 
   @Override
-  public void updateDriver(DriverFormDto driverForm, Long id) {
+  public void updateDriver(Long id, DriverFormDto driverForm) {
     Preconditions.checkNotNull(driverForm,"Driver form cannot be null");
     Preconditions.checkNotNull(id,"Driver id cannot be null");
     Driver driver = driverRepository.findOneThrowable(id);
-    driver = DRIVER_MAPPER.map(driverForm);
+    driver = DRIVER_MAPPER.map(driverForm, driver);
     driverRepository.save(driver);
   }
 }

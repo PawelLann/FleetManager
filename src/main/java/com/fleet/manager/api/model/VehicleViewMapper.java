@@ -4,7 +4,6 @@ import com.fleet.manager.persistence.entity.Vehicle;
 import com.manager.api.model.VehicleViewDto;
 import org.mapstruct.Mapper;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -14,5 +13,5 @@ import java.util.List;
 public interface VehicleViewMapper {
 
   VehicleViewDto map(Vehicle vehicle);
-  List<VehicleViewDto> map(Collection<Vehicle> vehicles);
+  List<VehicleViewDto> map(List<Vehicle> vehicles);
 }

@@ -39,4 +39,5 @@ public class Incident extends AbstractEntity implements Serializable {
 
   @ManyToMany(mappedBy = "incidents")
   private Set<Vehicle> vehicles = Sets.newHashSet();
+
 }

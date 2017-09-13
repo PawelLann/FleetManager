@@ -18,5 +18,5 @@ public interface DriverService {
   DriverViewDto getDriverById(Long id);
   List<VehicleViewDto> getVehiclesByDriverId(Long id);
   void removeVehicleFromDriver(Long driverId, Long vehicleId);
-  void updateDriver(DriverFormDto driverForm, Long id);
+  void updateDriver(Long id, DriverFormDto driverForm);
 }

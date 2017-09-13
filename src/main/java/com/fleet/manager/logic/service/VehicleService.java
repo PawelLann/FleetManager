@@ -1,6 +1,7 @@
 package com.fleet.manager.logic.service;
 
 import com.manager.api.model.IncidentViewDto;
+import com.manager.api.model.VehicleFormDto;
 import com.manager.api.model.VehicleViewDto;
 
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.List;
  */
 public interface VehicleService {
 
-  void createVehicle();
-  void deleteVehicle();
+  void createVehicle(VehicleFormDto vehicleForm);
+  void deleteVehicle(Long id);
   List<VehicleViewDto> getAllVehicles();
-  List<IncidentViewDto> getIncidentsByVehicleId();
-  VehicleViewDto getVehicleById();
-  void updateVehicle();
+  List<IncidentViewDto> getIncidentsByVehicleId(Long id);
+  VehicleViewDto getVehicleById(Long id);
+  void updateVehicle(Long id,VehicleFormDto vehicleForm);
 }

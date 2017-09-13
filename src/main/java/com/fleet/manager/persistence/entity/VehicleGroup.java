@@ -28,4 +28,12 @@ public class VehicleGroup extends AbstractEntity implements Serializable {
 
   @OneToMany(mappedBy = "vehicleGroup")
   private Set<Vehicle> vehicles = Sets.newHashSet();
+
+  public void addVehicle(Vehicle vehicle){
+    vehicles.add(vehicle);
+  }
+
+  public void removeVehicle(Vehicle vehicle) {
+    vehicles.remove(vehicle);
+  }
 }

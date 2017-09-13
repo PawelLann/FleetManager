@@ -1,0 +1,14 @@
+server:
+  port: 8080
+  contextPath: /
+---
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false

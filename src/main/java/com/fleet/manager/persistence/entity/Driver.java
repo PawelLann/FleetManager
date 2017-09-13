@@ -1,5 +1,6 @@
 package com.fleet.manager.persistence.entity;
 
+import com.fleet.manager.api.validation.BusinessException;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,4 +46,5 @@ public class Driver extends AbstractEntity implements Serializable {
   public void addVehicle(Vehicle vehicle){
     vehicles.add(vehicle);
   }
+
 }

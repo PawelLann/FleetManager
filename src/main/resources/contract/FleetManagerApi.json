@@ -449,14 +449,6 @@
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "driverForm",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/DriverFormDto"
-            }
-          },
-          {
             "in": "path",
             "name": "id",
             "description": "ID of a driver",
@@ -464,6 +456,14 @@
             "type": "integer",
             "format": "int64",
             "minimum": 1
+          },
+          {
+            "in": "body",
+            "name": "driverForm",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DriverFormDto"
+            }
           }
         ],
         "responses": {
@@ -702,6 +702,31 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "vehicleGroupId",
+            "in": "query",
+            "description": "ID of a vehicle group",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "vehicleId",
+            "in": "query",
+            "description": "ID of a vehicle",
+            "type": "integer",
+            "format": "int64",
+            "minimum": 1
+          },
+          {
+            "name": "incidentDate",
+            "in": "query",
+            "description": "Dates of incidents",
+            "type": "string",
+            "format": "date"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Operation successful",
@@ -856,7 +881,7 @@
           "200": {
             "description": "Operation successful",
             "schema": {
-              "$ref": "#/definitions/VehicleGroupViewDto"
+              "$ref": "#/definitions/VehicleGroupFormDto"
             }
           },
           "400": {
@@ -1103,31 +1128,6 @@
         "operationId": "getAllIncidents",
         "produces": [
           "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "incidentId",
-            "in": "query",
-            "description": "ID of an incident",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1
-          },
-          {
-            "name": "vehicleId",
-            "in": "query",
-            "description": "ID of a vehicle",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1
-          },
-          {
-            "name": "incidentDate",
-            "in": "query",
-            "description": "Dates of incidents",
-            "type": "string",
-            "format": "date"
-          }
         ],
         "responses": {
           "200": {

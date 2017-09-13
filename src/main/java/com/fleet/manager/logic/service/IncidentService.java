@@ -1,5 +1,6 @@
 package com.fleet.manager.logic.service;
 
+import com.manager.api.model.IncidentFormDto;
 import com.manager.api.model.IncidentViewDto;
 
 import java.util.List;
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public interface IncidentService {
 
-  void createIncident();
-  void deleteIncident();
+  void createIncident(IncidentFormDto incidentForm);
+  void deleteIncident(Long id);
   List<IncidentViewDto> getAllIncidents();
-  IncidentViewDto getIncidentById();
-  void updateIncident();
+  IncidentViewDto getIncidentById(Long id);
+  void updateIncident(Long id, IncidentFormDto incidentForm);
 }
