@@ -1,10 +1,9 @@
 package com.fleet.manager.persistence.repository;
 
-import com.fleet.manager.api.validation.BusinessException;
-import com.fleet.manager.api.validation.ExceptionMessage;
+import com.fleet.manager.api.exception.BusinessException;
+import com.fleet.manager.api.exception.ExceptionMessage;
 import com.fleet.manager.persistence.entity.VehicleGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**

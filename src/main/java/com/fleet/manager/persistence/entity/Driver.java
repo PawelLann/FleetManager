@@ -1,6 +1,5 @@
 package com.fleet.manager.persistence.entity;
 
-import com.fleet.manager.api.validation.BusinessException;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.fleet.manager.api.validation;
+package com.fleet.manager.api.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

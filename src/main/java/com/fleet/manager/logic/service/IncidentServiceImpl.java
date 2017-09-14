@@ -4,8 +4,8 @@ import com.fleet.manager.api.model.IncidentMapper;
 import com.fleet.manager.api.model.IncidentMapperImpl;
 import com.fleet.manager.api.model.IncidentViewMapper;
 import com.fleet.manager.api.model.IncidentViewMapperImpl;
-import com.fleet.manager.api.validation.BusinessException;
-import com.fleet.manager.api.validation.ExceptionMessage;
+import com.fleet.manager.api.exception.BusinessException;
+import com.fleet.manager.api.exception.ExceptionMessage;
 import com.fleet.manager.persistence.entity.Driver;
 import com.fleet.manager.persistence.entity.Incident;
 import com.fleet.manager.persistence.entity.Vehicle;
@@ -49,11 +49,11 @@ public class IncidentServiceImpl implements IncidentService {
   public void deleteIncident(Long id) {
     Preconditions.checkNotNull(id,"Id cannot be null");
     Incident incident = incidentRepository.findOneThrowable(id);
-    //drivers i vehicles
     List<Driver> drivers = driverRepository.findAllByIncidentsContains(incident);
     List<Vehicle> vehicles = vehicleRepository.findAllByIncidentsContains(incident);
-    //drivers.forEach(incident::)
-
+    drivers.forEach(incident::removeDriver);
+    vehicles.forEach(incident::removeVehicle);
+    incidentRepository.delete(incident);
   }
 
   @Override

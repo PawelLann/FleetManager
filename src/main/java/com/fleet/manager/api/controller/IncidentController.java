@@ -1,9 +1,11 @@
 package com.fleet.manager.api.controller;
 
+import com.fleet.manager.logic.service.IncidentService;
 import com.manager.api.IncidentsApi;
 import com.manager.api.model.IncidentFormDto;
 import com.manager.api.model.IncidentViewDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,28 +23,34 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class IncidentController implements IncidentsApi {
+
+  private final IncidentService incidentService;
+
   @Override
-  public ResponseEntity<Void> createIncident(@Valid @RequestBody IncidentFormDto incidentForm) {
-    return null;
+  public ResponseEntity<Void> createIncident(@RequestBody IncidentFormDto incidentForm) {
+    incidentService.createIncident(incidentForm);
+    return new ResponseEntity<>(HttpStatus.CREATED);
   }
 
   @Override
   public ResponseEntity<Void> deleteIncident(@PathVariable("id") Long id) {
-    return null;
+    incidentService.deleteIncident(id);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @Override
   public ResponseEntity<List<IncidentViewDto>> getAllIncidents() {
-    return null;
+    return new ResponseEntity<>(incidentService.getAllIncidents(),HttpStatus.OK);
   }
 
   @Override
   public ResponseEntity<IncidentViewDto> getIncidentById(@PathVariable("id") Long id) {
-    return null;
+    return new ResponseEntity<>(incidentService.getIncidentById(id),HttpStatus.OK);
   }
 
   @Override
   public ResponseEntity<Void> updateIncident(@PathVariable("id") Long id, @Valid @RequestBody IncidentFormDto incidentForm) {
-    return null;
+    incidentService.updateIncident(id,incidentForm);
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 }
