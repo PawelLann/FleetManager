@@ -5,9 +5,12 @@ import com.manager.api.model.IncidentFormDto;
 import com.manager.api.model.IncidentViewDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -19,27 +22,27 @@ import java.util.List;
 @RequestMapping("/api")
 public class IncidentController implements IncidentsApi {
   @Override
-  public ResponseEntity<Void> createIncident(IncidentFormDto incidentForm) {
+  public ResponseEntity<Void> createIncident(@Valid @RequestBody IncidentFormDto incidentForm) {
     return null;
   }
 
   @Override
-  public ResponseEntity<Void> deleteIncident(Long id) {
+  public ResponseEntity<Void> deleteIncident(@PathVariable("id") Long id) {
     return null;
   }
 
   @Override
-  public ResponseEntity<List<IncidentViewDto>> getAllIncidents(Long incidentId, Long vehicleId, LocalDate incidentDate) {
+  public ResponseEntity<List<IncidentViewDto>> getAllIncidents() {
     return null;
   }
 
   @Override
-  public ResponseEntity<IncidentViewDto> getIncidentById(Long id) {
+  public ResponseEntity<IncidentViewDto> getIncidentById(@PathVariable("id") Long id) {
     return null;
   }
 
   @Override
-  public ResponseEntity<Void> updateIncident(Long id, IncidentFormDto incidentForm) {
+  public ResponseEntity<Void> updateIncident(@PathVariable("id") Long id, @Valid @RequestBody IncidentFormDto incidentForm) {
     return null;
   }
 }

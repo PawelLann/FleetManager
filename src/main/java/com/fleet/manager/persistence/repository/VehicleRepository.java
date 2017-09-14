@@ -3,6 +3,7 @@ package com.fleet.manager.persistence.repository;
 import com.fleet.manager.api.validation.BusinessException;
 import com.fleet.manager.api.validation.ExceptionMessage;
 import com.fleet.manager.persistence.entity.Driver;
+import com.fleet.manager.persistence.entity.Incident;
 import com.fleet.manager.persistence.entity.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
@@ -26,5 +27,5 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     return vehicle;
   }
 
-  List<Vehicle> findAllByIncidentsContains();
+  List<Vehicle> findAllByIncidentsContains(Incident incident);
 }

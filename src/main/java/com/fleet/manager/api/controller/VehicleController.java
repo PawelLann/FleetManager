@@ -6,9 +6,11 @@ import com.manager.api.model.VehicleFormDto;
 import com.manager.api.model.VehicleViewDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class VehicleController implements VehiclesApi {
   @Override
-  public ResponseEntity<Void> createVehicle(VehicleFormDto vehicleForm) {
+  public ResponseEntity<Void> createVehicle(@Valid @RequestBody VehicleFormDto vehicleForm) {
     return null;
   }
 

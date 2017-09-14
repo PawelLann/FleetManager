@@ -50,8 +50,8 @@ public class IncidentServiceImpl implements IncidentService {
     Preconditions.checkNotNull(id,"Id cannot be null");
     Incident incident = incidentRepository.findOneThrowable(id);
     //drivers i vehicles
-    List<Driver> drivers = driverRepository.findAllByIncidentsContains();
-    List<Vehicle> vehicles = vehicleRepository.findAllByIncidentsContains();
+    List<Driver> drivers = driverRepository.findAllByIncidentsContains(incident);
+    List<Vehicle> vehicles = vehicleRepository.findAllByIncidentsContains(incident);
     //drivers.forEach(incident::)
 
   }

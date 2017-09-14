@@ -4,6 +4,9 @@ server:
 ---
 spring:
   datasource:
+    url: jdbc:mysql://localhost:3306/managerdb?autoReconnect=true&useSSL=false
+    username: root
+    password: Powerfulheart7!
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     hibernate:

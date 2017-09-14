@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -34,7 +35,7 @@ public class VehicleGroupController implements VehicleGroupsApi{
   }
 
   @Override
-  public ResponseEntity<List<VehicleGroupViewDto>> getAllVehicleGroups() {
+  public ResponseEntity<List<VehicleGroupViewDto>> getAllVehicleGroups(Long vehicleGroupId, Long vehicleId, LocalDate incidentDate) {
     return null;
   }
 
@@ -54,8 +55,7 @@ public class VehicleGroupController implements VehicleGroupsApi{
   }
 
   @Override
-  public ResponseEntity<VehicleGroupViewDto> updateVehicleGroup(VehicleGroupFormDto vehicleGroupForm, Long id) {
+  public ResponseEntity<VehicleGroupFormDto> updateVehicleGroup(VehicleGroupFormDto vehicleGroupForm, Long id) {
     return null;
   }
 }
-
