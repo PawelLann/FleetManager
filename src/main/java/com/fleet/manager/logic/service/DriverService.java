@@ -7,7 +7,7 @@ import com.manager.api.model.VehicleViewDto;
 import java.util.List;
 
 /**
- * Created by pawel.langwerski@coi.gov.pl on 09.09.17.
+ * Created by pawel.langwerski@gmail.pl on 09.09.17.
  */
 public interface DriverService {
 

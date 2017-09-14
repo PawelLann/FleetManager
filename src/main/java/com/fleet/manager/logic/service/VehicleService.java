@@ -7,7 +7,7 @@ import com.manager.api.model.VehicleViewDto;
 import java.util.List;
 
 /**
- * Created by pawel.langwerski@coi.gov.pl on 09.09.17.
+ * Created by pawel.langwerski@gmail.pl on 09.09.17.
  */
 public interface VehicleService {
 
@@ -16,5 +16,5 @@ public interface VehicleService {
   List<VehicleViewDto> getAllVehicles();
   List<IncidentViewDto> getIncidentsByVehicleId(Long id);
   VehicleViewDto getVehicleById(Long id);
-  void updateVehicle(Long id,VehicleFormDto vehicleForm);
+  void updateVehicle(Long id, VehicleFormDto vehicleForm);
 }

@@ -10,7 +10,7 @@ public class BusinessException extends RuntimeException {
 
   private final ExceptionMessage exceptionMessage;
 
-  public BusinessException(ExceptionMessage exceptionMessage){
+  public BusinessException(ExceptionMessage exceptionMessage) {
     super(exceptionMessage.getMessage());
     this.exceptionMessage = exceptionMessage;
   }

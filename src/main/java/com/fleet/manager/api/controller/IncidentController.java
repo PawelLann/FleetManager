@@ -40,17 +40,17 @@ public class IncidentController implements IncidentsApi {
 
   @Override
   public ResponseEntity<List<IncidentViewDto>> getAllIncidents() {
-    return new ResponseEntity<>(incidentService.getAllIncidents(),HttpStatus.OK);
+    return new ResponseEntity<>(incidentService.getAllIncidents(), HttpStatus.OK);
   }
 
   @Override
   public ResponseEntity<IncidentViewDto> getIncidentById(@PathVariable("id") Long id) {
-    return new ResponseEntity<>(incidentService.getIncidentById(id),HttpStatus.OK);
+    return new ResponseEntity<>(incidentService.getIncidentById(id), HttpStatus.OK);
   }
 
   @Override
-  public ResponseEntity<Void> updateIncident(@PathVariable("id") Long id, @Valid @RequestBody IncidentFormDto incidentForm) {
-    incidentService.updateIncident(id,incidentForm);
+  public ResponseEntity<Void> updateIncident(@PathVariable("id") Long id, @RequestBody IncidentFormDto incidentForm) {
+    incidentService.updateIncident(id, incidentForm);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 }

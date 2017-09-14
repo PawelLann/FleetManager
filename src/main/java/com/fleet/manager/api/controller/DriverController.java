@@ -22,18 +22,18 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class DriverController implements DriversApi{
+public class DriverController implements DriversApi {
 
   private final DriverService driverService;
 
   @Override
-  public ResponseEntity<Void> addVehicleToDriver(@PathVariable("driverId") Long driverId,@PathVariable("vehicleId") Long vehicleId){
+  public ResponseEntity<Void> addVehicleToDriver(@PathVariable("driverId") Long driverId, @PathVariable("vehicleId") Long vehicleId) {
     driverService.addVehicleToDriver(driverId, vehicleId);
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @Override
-  public ResponseEntity<Void> createDriver(@Valid @RequestBody DriverFormDto driverForm) {
+  public ResponseEntity<Void> createDriver(@RequestBody DriverFormDto driverForm) {
     driverService.createDriver(driverForm);
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
@@ -46,17 +46,17 @@ public class DriverController implements DriversApi{
 
   @Override
   public ResponseEntity<List<DriverViewDto>> getAllDrivers() {
-    return new ResponseEntity<>(driverService.getAllDrivers(),HttpStatus.OK);
+    return new ResponseEntity<>(driverService.getAllDrivers(), HttpStatus.OK);
   }
 
   @Override
   public ResponseEntity<DriverViewDto> getDriverById(@PathVariable("id") Long id) {
-    return new ResponseEntity<>(driverService.getDriverById(id),HttpStatus.OK);
+    return new ResponseEntity<>(driverService.getDriverById(id), HttpStatus.OK);
   }
 
   @Override
   public ResponseEntity<List<VehicleViewDto>> getVehiclesByDriverId(@PathVariable("id") Long id) {
-    return new ResponseEntity<>(driverService.getVehiclesByDriverId(id),HttpStatus.OK);
+    return new ResponseEntity<>(driverService.getVehiclesByDriverId(id), HttpStatus.OK);
   }
 
   @Override
@@ -66,7 +66,7 @@ public class DriverController implements DriversApi{
   }
 
   @Override
-  public ResponseEntity<Void> updateDriver(@PathVariable("id") Long id, @Valid @RequestBody DriverFormDto driverForm) {
+  public ResponseEntity<Void> updateDriver(@PathVariable("id") Long id, @RequestBody DriverFormDto driverForm) {
     driverService.updateDriver(id, driverForm);
     return new ResponseEntity<>(HttpStatus.OK);
   }

@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by pawel.langwerski@coi.gov.pl on 10.09.17.
+ * Created by pawel.langwerski@gmail.pl on 10.09.17.
  */
 @Transactional
 @RequiredArgsConstructor
@@ -81,7 +81,7 @@ public class DriverServiceImpl implements DriverService {
 
   @Override
   public DriverViewDto getDriverById(Long id) {
-    Preconditions.checkNotNull(id,"Driver id cannot be null");
+    Preconditions.checkNotNull(id, "Driver id cannot be null");
     Driver driver = driverRepository.findOneThrowable(id);
     return DRIVER_VIEW_MAPPER.map(driver);
   }
@@ -94,13 +94,13 @@ public class DriverServiceImpl implements DriverService {
     if (vehicles.isEmpty()) {
       throw new BusinessException(ExceptionMessage.NO_VEHICLES_ASSIGNED);
     }
-    return VEHICLE_VIEW_MAPPER.map(vehicleRepository.findAllByDriversContains(driver));
+    return VEHICLE_VIEW_MAPPER.map(vehicles);
   }
 
   @Override
   public void removeVehicleFromDriver(Long driverId, Long vehicleId) {
-    Preconditions.checkNotNull(driverId,"Driver id cannot be null");
-    Preconditions.checkNotNull(vehicleId,"Vehicle id cannot be null");
+    Preconditions.checkNotNull(driverId, "Driver id cannot be null");
+    Preconditions.checkNotNull(vehicleId, "Vehicle id cannot be null");
     Driver driver = driverRepository.findOneThrowable(driverId);
     Vehicle vehicle = vehicleRepository.findOneThrowable(vehicleId);
     driver.removeVehicle(vehicle);
@@ -108,8 +108,8 @@ public class DriverServiceImpl implements DriverService {
 
   @Override
   public void updateDriver(Long id, DriverFormDto driverForm) {
-    Preconditions.checkNotNull(driverForm,"Driver form cannot be null");
-    Preconditions.checkNotNull(id,"Driver id cannot be null");
+    Preconditions.checkNotNull(driverForm, "Driver form cannot be null");
+    Preconditions.checkNotNull(id, "Driver id cannot be null");
     Driver driver = driverRepository.findOneThrowable(id);
     driver = DRIVER_MAPPER.map(driverForm, driver);
     driverRepository.save(driver);

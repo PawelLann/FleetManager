@@ -23,7 +23,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by pawel.langwerski@coi.gov.pl on 10.09.17.
+ * Created by pawel.langwerski@gmail.pl on 10.09.17.
  */
 @Transactional
 @RequiredArgsConstructor
@@ -40,14 +40,14 @@ public class IncidentServiceImpl implements IncidentService {
 
   @Override
   public void createIncident(IncidentFormDto incidentForm) {
-    Preconditions.checkNotNull(incidentForm,"Incident form cannot be null");
+    Preconditions.checkNotNull(incidentForm, "Incident form cannot be null");
     Incident incident = INCIDENT_MAPPER.map(incidentForm);
     incidentRepository.save(incident);
   }
 
   @Override
   public void deleteIncident(Long id) {
-    Preconditions.checkNotNull(id,"Id cannot be null");
+    Preconditions.checkNotNull(id, "Id cannot be null");
     Incident incident = incidentRepository.findOneThrowable(id);
     List<Driver> drivers = driverRepository.findAllByIncidentsContains(incident);
     List<Vehicle> vehicles = vehicleRepository.findAllByIncidentsContains(incident);
@@ -59,7 +59,7 @@ public class IncidentServiceImpl implements IncidentService {
   @Override
   public List<IncidentViewDto> getAllIncidents() {
     List<Incident> incidents = incidentRepository.findAll();
-    if(incidents.isEmpty()){
+    if (incidents.isEmpty()) {
       throw new BusinessException((ExceptionMessage.INCIDENTS_NOT_FOUND));
     }
     return INCIDENT_VIEW_MAPPER.map(incidents);
@@ -67,15 +67,15 @@ public class IncidentServiceImpl implements IncidentService {
 
   @Override
   public IncidentViewDto getIncidentById(Long id) {
-    Preconditions.checkNotNull(id,"Id cannot be null");
+    Preconditions.checkNotNull(id, "Id cannot be null");
     Incident incident = incidentRepository.findOneThrowable(id);
     return INCIDENT_VIEW_MAPPER.map(incident);
   }
 
   @Override
   public void updateIncident(Long id, IncidentFormDto incidentForm) {
-    Preconditions.checkNotNull(id,"Id cannot be null");
-    Preconditions.checkNotNull(incidentForm,"Incident form cannot be null");
+    Preconditions.checkNotNull(id, "Id cannot be null");
+    Preconditions.checkNotNull(incidentForm, "Incident form cannot be null");
     Incident incident = incidentRepository.findOneThrowable(id);
     incident = INCIDENT_MAPPER.map(incidentForm, incident);
     incidentRepository.save(incident);

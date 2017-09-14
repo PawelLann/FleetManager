@@ -163,6 +163,9 @@
         ],
         "summary": "Updates a vehicle by ID",
         "operationId": "updateVehicle",
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -702,31 +705,6 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "vehicleGroupId",
-            "in": "query",
-            "description": "ID of a vehicle group",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1
-          },
-          {
-            "name": "vehicleId",
-            "in": "query",
-            "description": "ID of a vehicle",
-            "type": "integer",
-            "format": "int64",
-            "minimum": 1
-          },
-          {
-            "name": "incidentDate",
-            "in": "query",
-            "description": "Dates of incidents",
-            "type": "string",
-            "format": "date"
-          }
-        ],
         "responses": {
           "200": {
             "description": "Operation successful",
@@ -879,10 +857,8 @@
         ],
         "responses": {
           "200": {
-            "description": "Operation successful",
-            "schema": {
-              "$ref": "#/definitions/VehicleGroupFormDto"
-            }
+            "description": "Operation successful"
+
           },
           "400": {
             "description": "Bad request",

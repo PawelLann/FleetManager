@@ -49,7 +49,7 @@ public class Vehicle extends AbstractEntity implements Serializable {
   private VehicleType vehicleType;
 
   @ManyToOne
-  @JoinColumn(name="VEHICLE_GROUP_ID")
+  @JoinColumn(name = "VEHICLE_GROUP_ID")
   private VehicleGroup vehicleGroup;
 
   @ManyToMany
@@ -65,4 +65,12 @@ public class Vehicle extends AbstractEntity implements Serializable {
       joinColumns = {@JoinColumn(name = "VEHICLE_ID")},
       inverseJoinColumns = {@JoinColumn(name = "INCIDENT_ID")})
   private Set<Incident> incidents = Sets.newHashSet();
+
+  public void removeDriver(Driver driver) {
+    drivers.remove(driver);
+  }
+
+  public void removeIncident(Incident incident) {
+    incidents.remove(incident);
+  }
 }

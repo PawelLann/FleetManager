@@ -5,6 +5,7 @@ import com.fleet.manager.api.exception.ExceptionMessage;
 import com.fleet.manager.persistence.entity.Driver;
 import com.fleet.manager.persistence.entity.Incident;
 import com.fleet.manager.persistence.entity.Vehicle;
+import com.fleet.manager.persistence.entity.VehicleGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -27,4 +28,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
   List<Vehicle> findAllByIncidentsContains(Incident incident);
 
   List<Vehicle> findAllByDriversContains(Driver driver);
+
+  List<Vehicle> findAllByVehicleGroupContains(VehicleGroup vehicleGroup);
 }

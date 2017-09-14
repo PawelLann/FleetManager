@@ -38,15 +38,15 @@ public class Driver extends AbstractEntity implements Serializable {
   @ManyToMany(mappedBy = "drivers")
   private Set<Incident> incidents = Sets.newHashSet();
 
-  public void removeVehicle(Vehicle vehicle){
+  public void removeVehicle(Vehicle vehicle) {
     vehicles.remove(vehicle);
   }
 
-  public void removeIncident(Incident incident){
+  public void removeIncident(Incident incident) {
     incidents.remove(incident);
   }
 
-  public void addVehicle(Vehicle vehicle){
+  public void addVehicle(Vehicle vehicle) {
     vehicles.add(vehicle);
   }
 
