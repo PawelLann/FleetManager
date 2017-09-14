@@ -1,13 +1,10 @@
 package com.fleet.manager.persistence.entity;
 
 import lombok.Getter;
-import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.Date;
 
 /**
  * Created by pawel.langwerski@gmail.pl on 06.09.17.

@@ -6,7 +6,6 @@ import com.fleet.manager.api.model.VehicleGroupViewMapper;
 import com.fleet.manager.api.model.VehicleGroupViewMapperImpl;
 import com.fleet.manager.api.exception.BusinessException;
 import com.fleet.manager.api.exception.ExceptionMessage;
-import com.fleet.manager.api.model.VehicleMapper;
 import com.fleet.manager.api.model.VehicleViewMapper;
 import com.fleet.manager.api.model.VehicleViewMapperImpl;
 import com.fleet.manager.persistence.entity.Vehicle;
