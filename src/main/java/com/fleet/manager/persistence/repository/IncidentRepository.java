@@ -15,8 +15,6 @@ import java.util.List;
 @Repository
 public interface IncidentRepository extends JpaRepository<Incident, Long> {
 
-  List<Incident> findAllByDriversContains(Driver driver);
-
   default Incident findOneThrowable(Long id) {
     Incident incident = findOne(id);
     if (incident == null) {
@@ -24,4 +22,6 @@ public interface IncidentRepository extends JpaRepository<Incident, Long> {
     }
     return incident;
   }
+
+  List<Incident> findAllByDriversContains(Driver driver);
 }

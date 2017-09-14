@@ -42,6 +42,10 @@ public class Driver extends AbstractEntity implements Serializable {
     vehicles.remove(vehicle);
   }
 
+  public void removeIncident(Incident incident){
+    incidents.remove(incident);
+  }
+
   public void addVehicle(Vehicle vehicle){
     vehicles.add(vehicle);
   }

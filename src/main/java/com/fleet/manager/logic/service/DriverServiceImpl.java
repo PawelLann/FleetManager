@@ -9,8 +9,10 @@ import com.fleet.manager.api.model.VehicleViewMapperImpl;
 import com.fleet.manager.api.exception.BusinessException;
 import com.fleet.manager.api.exception.ExceptionMessage;
 import com.fleet.manager.persistence.entity.Driver;
+import com.fleet.manager.persistence.entity.Incident;
 import com.fleet.manager.persistence.entity.Vehicle;
 import com.fleet.manager.persistence.repository.DriverRepository;
+import com.fleet.manager.persistence.repository.IncidentRepository;
 import com.fleet.manager.persistence.repository.VehicleRepository;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
@@ -36,6 +38,7 @@ public class DriverServiceImpl implements DriverService {
 
   private final DriverRepository driverRepository;
   private final VehicleRepository vehicleRepository;
+  private final IncidentRepository incidentRepository;
   private final static DriverMapper DRIVER_MAPPER = new DriverMapperImpl();
   private final static DriverViewMapper DRIVER_VIEW_MAPPER = new DriverViewMapperImpl();
   private final static VehicleViewMapper VEHICLE_VIEW_MAPPER = new VehicleViewMapperImpl();
@@ -60,7 +63,10 @@ public class DriverServiceImpl implements DriverService {
   public void deleteDriver(Long id) {
     Preconditions.checkNotNull(id, "Driver id cannot be null");
     Driver driver = driverRepository.findOneThrowable(id);
-    //dodać czyszczenie list vehicles i incidents bo bez nich raczej nie zadziała
+    List<Vehicle> vehicles = vehicleRepository.findAllByDriversContains(driver);
+    List<Incident> incidents = incidentRepository.findAllByDriversContains(driver);
+    vehicles.forEach(driver::removeVehicle);
+    incidents.forEach(driver::removeIncident);
     driverRepository.delete(driver);
   }
 

@@ -19,13 +19,4 @@ public abstract class AbstractEntity {
   @Id
   @GeneratedValue
   private Long id;
-
-//  @NotEmpty
-//  @GeneratedValue
-//  @Column(nullable = false, length = 30)
-//  private Date createDate;
-//
-//  @NotEmpty
-//  @Column(nullable = false, length = 30)
-//  private Date modifyDate;
 }
