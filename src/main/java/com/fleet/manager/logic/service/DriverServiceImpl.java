@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by pawel.langwerski@gmail.pl on 10.09.17.
@@ -73,10 +74,8 @@ public class DriverServiceImpl implements DriverService {
   @Override
   public List<DriverViewDto> getAllDrivers() {
     ArrayList<Driver> drivers = Lists.newArrayList(driverRepository.findAll());
-    if (drivers.isEmpty()) {
-      throw new BusinessException(ExceptionMessage.DRIVERS_NOT_FOUND);
-    }
-    return DRIVER_VIEW_MAPPER.map(driverRepository.findAll());
+    return DRIVER_VIEW_MAPPER.map(Optional.ofNullable(drivers)
+            .orElseThrow(() -> new BusinessException(ExceptionMessage.DRIVERS_NOT_FOUND)));
   }
 
   @Override
@@ -91,10 +90,8 @@ public class DriverServiceImpl implements DriverService {
     Preconditions.checkNotNull(id, "Id cannot be null");
     Driver driver = driverRepository.findOneThrowable(id);
     List<Vehicle> vehicles = vehicleRepository.findAllByDriversContains(driver);
-    if (vehicles.isEmpty()) {
-      throw new BusinessException(ExceptionMessage.NO_VEHICLES_ASSIGNED);
-    }
-    return VEHICLE_VIEW_MAPPER.map(vehicles);
+    return VEHICLE_VIEW_MAPPER.map(Optional.ofNullable(vehicles)
+            .orElseThrow(() -> new BusinessException(ExceptionMessage.NO_VEHICLES_ASSIGNED)));
   }
 
   @Override

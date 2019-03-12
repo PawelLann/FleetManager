@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by pawel.langwerski@gmail.pl on 10.09.17.
@@ -59,10 +60,8 @@ public class IncidentServiceImpl implements IncidentService {
   @Override
   public List<IncidentViewDto> getAllIncidents() {
     List<Incident> incidents = incidentRepository.findAll();
-    if (incidents.isEmpty()) {
-      throw new BusinessException((ExceptionMessage.INCIDENTS_NOT_FOUND));
-    }
-    return INCIDENT_VIEW_MAPPER.map(incidents);
+    return INCIDENT_VIEW_MAPPER.map(Optional.ofNullable(incidents)
+            .orElseThrow(() -> new BusinessException(ExceptionMessage.INCIDENTS_NOT_FOUND)));
   }
 
   @Override

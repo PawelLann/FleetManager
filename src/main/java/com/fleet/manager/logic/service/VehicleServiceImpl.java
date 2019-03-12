@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by pawel.langwerski@gmail.pl on 10.09.17.
@@ -52,7 +53,6 @@ public class VehicleServiceImpl implements VehicleService {
   public void deleteVehicle(Long id) {
     Preconditions.checkNotNull(id, "Id cannot be null");
     Vehicle vehicle = vehicleRepository.findOneThrowable(id);
-    //drivers incidents
     List<Driver> drivers = driverRepository.findAllByVehiclesContains(vehicle);
     List<Incident> incidents = incidentRepository.findAllByVehiclesContains(vehicle);
     drivers.forEach(vehicle::removeDriver);
@@ -63,21 +63,17 @@ public class VehicleServiceImpl implements VehicleService {
   @Override
   public List<VehicleViewDto> getAllVehicles() {
     List<Vehicle> vehicles = vehicleRepository.findAll();
-    if (vehicles.isEmpty()) {
-      throw new BusinessException(ExceptionMessage.VEHICLES_NOT_FOUND);
-    }
-    return VEHICLE_VIEW_MAPPER.map(vehicles);
+    return VEHICLE_VIEW_MAPPER.map(Optional.ofNullable(vehicles)
+            .orElseThrow(() -> new BusinessException(ExceptionMessage.VEHICLES_NOT_FOUND)));
   }
 
   @Override
   public List<IncidentViewDto> getIncidentsByVehicleId(Long id) {
     Preconditions.checkNotNull(id, "Id cannot be null");
     Vehicle vehicle = vehicleRepository.findOneThrowable(id);
-    List<Incident> incidents = incidentRepository.findAllByVehiclesContains(vehicle);
-    if (incidents.isEmpty()) {
-      throw new BusinessException(ExceptionMessage.INCIDENT_NOT_ASSIGNED);
-    }
-    return INCIDENT_VIEW_MAPPER.map(incidents);
+    return INCIDENT_VIEW_MAPPER.map(Optional.ofNullable(incidentRepository
+            .findAllByVehiclesContains(vehicle))
+            .orElseThrow(() -> new BusinessException(ExceptionMessage.INCIDENT_NOT_ASSIGNED)));
   }
 
   @Override

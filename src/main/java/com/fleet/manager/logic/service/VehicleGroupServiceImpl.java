@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by pawel.langwerski@gmail.pl on 10.09.17.
@@ -68,10 +69,9 @@ public class VehicleGroupServiceImpl implements VehicleGroupService {
   @Override
   public List<VehicleGroupViewDto> getAllVehicleGroups() {
     List<VehicleGroup> vehicleGroups = vehicleGroupRepository.findAll();
-    if (vehicleGroups.isEmpty()) {
-      throw new BusinessException(ExceptionMessage.VEHICLE_GROUPS_NOT_FOUND);
-    }
-    return VEHICLE_GROUP_VIEW_MAPPER.map(vehicleGroups);
+    return VEHICLE_GROUP_VIEW_MAPPER.map(Optional.ofNullable(vehicleGroups)
+            .orElseThrow(() -> new BusinessException(ExceptionMessage.VEHICLE_GROUPS_NOT_FOUND)));
+
   }
 
   @Override
@@ -86,10 +86,9 @@ public class VehicleGroupServiceImpl implements VehicleGroupService {
     Preconditions.checkNotNull(id, "Id cannot be null");
     VehicleGroup vehicleGroup = vehicleGroupRepository.findOneThrowable(id);
     List<Vehicle> vehicles = vehicleRepository.findAllByVehicleGroupContains(vehicleGroup);
-    if (vehicles.isEmpty()) {
-      throw new BusinessException(ExceptionMessage.NO_VEHICLES_ASSIGNED);
-    }
-    return VEHICLE_VIEW_MAPPER.map(vehicles);
+    return VEHICLE_VIEW_MAPPER.map(Optional.ofNullable(vehicles)
+            .orElseThrow(() -> new BusinessException(ExceptionMessage.NO_VEHICLES_ASSIGNED)));
+
   }
 
   @Override
